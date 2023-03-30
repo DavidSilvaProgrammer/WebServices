@@ -8,3 +8,81 @@ Para isso, crie a estrutura de um web service, que demonstra exemplos de comunic
 Trabalhe esse código em seu IDE, suba ele para sua conta no GitHub e compartilhe o link desse 
 projeto no campo ao lado para que outros desenvolvedores possam analisá-lo.
 */
+
+
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" 
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+             xmlns:tns="http://www.example.com/informacoesclientes" 
+             targetNamespace="http://www.example.com/informacoesclientes">
+    <types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element name="cliente" type="tns:informacoesCliente"/>
+            <xsd:complexType name="informacoesCliente">
+                <xsd:sequence>
+                    <xsd:element name="nome" type="xsd:string"/>
+                    <xsd:element name="endereco" type="xsd:string"/>
+                    <xsd:element name="telefone" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </types>
+    <message name="informacoesClienteRequisicao">
+        <part name="idCliente" type="xsd:string"/>
+    </message>
+    <message name="informacoesClienteResposta">
+        <part name="cliente" type="tns:informacoesCliente"/>
+    </message>
+    <portType name="informacoesClientePortType">
+        <operation name="getInformacoesCliente">
+            <input message="tns:informacoesClienteRequisicao"/>
+            <output message="tns:informacoesClienteResposta"/>
+        </operation>
+    </portType>
+    <binding name="informacoesClienteBinding" type="tns:informacoesClientePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getInformacoesCliente">
+            <soap:operation soapAction="http://www.example.com/informacoesclientes/getInformacoesCliente"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="informacoesClienteService">
+        <port name="informacoesClientePort" binding="tns:informacoesClienteBinding">
+            <soap:address location="http://www.example.com/informacoesclientes"/>
+        </port>
+    </service>
+</definitions>
+
+
+Exemplo de chamada ao serviço:
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+                  xmlns:ex="http://www.example.com/informacoesclientes">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ex:informacoesClienteRequisicao>
+            <idCliente>12345</idCliente>
+        </ex:informacoesClienteRequisicao>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+Exemplo de resposta do serviço:
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+                  xmlns:ex="http://www.example.com/informacoesclientes">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ex:informacoesClienteResposta>
+            <cliente>
+                <nome>João da Silva</nome>
+                <endereco>Rua A, 123</endereco>
+                <telefone>(11) 1234-5678</telefone>
+            </cliente>
+        </ex:informacoesClienteResposta>
+    </soapenv:Body>
+</soapenv:Envelope>
+``
