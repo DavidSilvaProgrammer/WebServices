@@ -1,0 +1,17 @@
+código implementa um serviço web que utiliza a comunicação SOAP (Simple Object Access Protocol) para obter informações de clientes.
+
+Na primeira parte do código, é definido o serviço utilizando a linguagem WSDL (Web Services Description Language). 
+Esse serviço é chamado "informacoesCliente" e é definido com um namespace específico ("http://www.example.com/informacoesclientes"). 
+Nessa definição, também são definidos os tipos de mensagens que serão utilizados, bem como as operações que podem ser realizadas no serviço.
+
+A segunda parte do código é um exemplo de como seria uma chamada ao serviço, utilizando a comunicação SOAP. 
+Nesse exemplo, é feita uma requisição para obter as informações de um cliente específico (identificado pelo "idCliente" informado). 
+Essa requisição é feita através de um envelope SOAP, que contém a mensagem de requisição no corpo do envelope.
+
+A terceira parte do código é um exemplo de como seria a resposta do serviço para a requisição feita anteriormente. 
+Nessa resposta, são retornadas as informações do cliente solicitado (nome, endereço e telefone). 
+Essa resposta também é enviada através de um envelope SOAP, que contém a mensagem de resposta no corpo do envelope.
+
+Em resumo, esse código implementa um serviço web que utiliza a comunicação SOAP para obter informações de clientes. 
+Esse serviço pode ser acessado através de uma chamada SOAP, que envia uma requisição com o identificador do cliente desejado. 
+O serviço então retorna as informações desse cliente em uma mensagem SOAP de resposta.
