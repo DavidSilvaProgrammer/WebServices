@@ -5,3 +5,79 @@ Realize essa atividade no WORD ou no Bloco de Notas, suba esse arquivo para algu
 o link no campo ao lado para que outros desenvolvedores possam analisá-lo.*/
 
 
+/*
+
+const express = require('express');
+const app = express();
+
+// Rota para o método GET
+app.get('/', (req, res) => {
+  res.send('Olá, mundo!');
+});
+
+// Rota para o método HEAD
+app.head('/', (req, res) => {
+  res.status(200).end();
+});
+
+// Rota para o método POST
+app.post('/', (req, res) => {
+  res.send('Método POST');
+});
+
+// Rota para o método PUT
+app.put('/', (req, res) => {
+  res.send('Método PUT');
+});
+
+// Rota para o método DELETE
+app.delete('/', (req, res) => {
+  res.send('Método DELETE');
+});
+
+// Rota para o método TRACE
+app.trace('/', (req, res) => {
+  res.send('Método TRACE');
+});
+
+// Rota para o método OPTIONS
+app.options('/', (req, res) => {
+  res.send('Método OPTIONS');
+});
+
+// Rota para o método CONNECT
+app.connect('/', (req, res) => {
+  res.send('Método CONNECT');
+});
+
+// Inicializa o servidor na porta 8080
+app.listen(8080, () => {
+  console.log('Servidor iniciado na porta 8080');
+});
+
+
+/*
+    GET: é utilizado para solicitar uma representação de um recurso específico. É o método mais comum e utilizado para acessar 
+    páginas web, imagens, arquivos, etc.
+
+    HEAD: é semelhante ao método GET, mas retorna apenas os cabeçalhos da resposta HTTP, sem o corpo da mensagem. 
+    É utilizado para obter informações sobre um recurso sem receber seu conteúdo completo.
+
+    POST: é utilizado para enviar dados a um servidor para criar ou atualizar um recurso. Geralmente é usado para enviar 
+    formulários ou dados de usuários para o servidor.
+
+    PUT: é utilizado para atualizar um recurso existente no servidor. Ao contrário do método POST, o PUT é utilizado para atualizar 
+    um recurso existente com um novo conjunto de dados.
+
+    DELETE: é utilizado para excluir um recurso específico do servidor.
+
+    TRACE: permite que um cliente obtenha uma resposta contendo as mesmas informações que seriam obtidas se a solicitação 
+    tivesse sido recebida pelo servidor de destino.
+
+    OPTIONS: é utilizado para obter informações sobre os métodos HTTP suportados por um servidor, bem como sobre as 
+    opções de comunicação disponíveis.
+
+    CONNECT: é utilizado para estabelecer uma conexão com um servidor usando o protocolo HTTP como um túnel para outros 
+    protocolos, como SSL ou TLS. É usado principalmente em conexões seguras.
+*/
+
