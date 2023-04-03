@@ -3,3 +3,63 @@ Um livro possui informações como nome, autor e ISBN.
 
 Realize essa atividade no WORD ou no Bloco de Notas, suba esse arquivo para algum repositório e 
 compartilhe o link no campo ao lado para que outros desenvolvedores possam analisá-lo.*/
+
+/*
+
+Estrutura do programa:
+    CREATE: POST /livros para criar um novo livro.
+    READ: GET /livros/:id para obter um livro específico pelo seu ID.
+    UPDATE: PUT /livros/:id para atualizar um livro existente pelo seu ID.
+    DELETE: DELETE /livros/:id para excluir um livro existente pelo seu ID.
+*/
+
+
+const express = require('express');
+const app = express();
+const livros = [];
+
+// rota para criar um novo livro
+app.post('/livros', (req, res) => {
+  const { nome, autor, isbn } = req.body;
+  const livro = { nome, autor, isbn };
+  livros.push(livro);
+  res.send(livro);
+});
+
+// rota para obter um livro pelo ID
+app.get('/livros/:id', (req, res) => {
+  const livro = livros[req.params.id];
+  if (!livro) {
+    res.status(404).send('Livro não encontrado');
+  } else {
+    res.send(livro);
+  }
+});
+
+// rota para atualizar um livro pelo ID
+app.put('/livros/:id', (req, res) => {
+  const livro = livros[req.params.id];
+  if (!livro) {
+    res.status(404).send('Livro não encontrado');
+  } else {
+    livro.nome = req.body.nome;
+    livro.autor = req.body.autor;
+    livro.isbn = req.body.isbn;
+    res.send(livro);
+  }
+});
+
+// rota para excluir um livro pelo ID
+app.delete('/livros/:id', (req, res) => {
+  const livro = livros[req.params.id];
+  if (!livro) {
+    res.status(404).send('Livro não encontrado');
+  } else {
+    livros.splice(req.params.id, 1);
+    res.send('Livro excluído');
+  }
+});
+
+app.listen(8080, () => {
+  console.log('Servidor iniciado na porta 8080');
+});
