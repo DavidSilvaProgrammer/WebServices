@@ -5,16 +5,26 @@ Realize essa atividade no WORD ou no Bloco de Notas, suba esse arquivo para algu
 compartilhe o link no campo ao lado para que outros desenvolvedores possam analisá-lo.*/
 
 /*
+Rotas do programa:
 
-Estrutura do programa:
-    CREATE: POST /livros para criar um novo livro.
-    READ: GET /livros/:id para obter um livro específico pelo seu ID.
-    UPDATE: PUT /livros/:id para atualizar um livro existente pelo seu ID.
-    DELETE: DELETE /livros/:id para excluir um livro existente pelo seu ID.
+POST /livros: Essa rota é utilizada para criar um novo livro no estoque da livraria. 
+Ela recebe as informações do livro no corpo da requisição e adiciona o livro no array livros.
+
+GET /livros/:isbn: Essa rota é utilizada para obter as informações de um livro a partir do seu 
+isbn (International Standard Book Number). Ela recebe o isbn do livro como parâmetro na URL e 
+retorna as informações do livro correspondente, se ele existir.
+
+PUT /livros/:isbn: Essa rota é utilizada para atualizar as informações de um livro a partir do 
+seu isbn. Ela recebe o isbn do livro como parâmetro na URL e as novas informações do livro no 
+corpo da requisição. Ela atualiza as informações do livro correspondente, se ele existir.
+
+DELETE /livros/:isbn: Essa rota é utilizada para excluir um livro a partir do seu isbn. 
+Ela recebe o isbn do livro como parâmetro na URL e exclui o livro correspondente, 
+se ele existir.
 */
 
 
-const express = require('express');
+cconst express = require('express');
 const app = express();
 const livros = [];
 
@@ -26,9 +36,9 @@ app.post('/livros', (req, res) => {
   res.send(livro);
 });
 
-// rota para obter um livro pelo ID
-app.get('/livros/:id', (req, res) => {
-  const livro = livros[req.params.id];
+// rota para obter um livro pelo ISBN
+app.get('/livros/:isbn', (req, res) => {
+  const livro = livros.find(livro => livro.isbn === req.params.isbn);
   if (!livro) {
     res.status(404).send('Livro não encontrado');
   } else {
@@ -36,9 +46,9 @@ app.get('/livros/:id', (req, res) => {
   }
 });
 
-// rota para atualizar um livro pelo ID
-app.put('/livros/:id', (req, res) => {
-  const livro = livros[req.params.id];
+// rota para atualizar um livro pelo ISBN
+app.put('/livros/:isbn', (req, res) => {
+  const livro = livros.find(livro => livro.isbn === req.params.isbn);
   if (!livro) {
     res.status(404).send('Livro não encontrado');
   } else {
@@ -49,13 +59,13 @@ app.put('/livros/:id', (req, res) => {
   }
 });
 
-// rota para excluir um livro pelo ID
-app.delete('/livros/:id', (req, res) => {
-  const livro = livros[req.params.id];
-  if (!livro) {
+// rota para excluir um livro pelo ISBN
+app.delete('/livros/:isbn', (req, res) => {
+  const index = livros.findIndex(livro => livro.isbn === req.params.isbn);
+  if (index === -1) {
     res.status(404).send('Livro não encontrado');
   } else {
-    livros.splice(req.params.id, 1);
+    livros.splice(index, 1);
     res.send('Livro excluído');
   }
 });
