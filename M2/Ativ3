@@ -7,6 +7,7 @@ para algum repositório e compartilhe o link no campo ao lado para que outros de
     
     2. Stateless: cada requisição deve conter todas as informações necessárias para ser processada, 
     sem a necessidade de manter informações de estado em memória;
+    
     3. Armazenamento em cache: utilização de cache para melhorar a performance e reduzir a carga no servidor;
     
     4. Interface uniforme: uso de recursos, verbos HTTP e representações padronizadas para permitir a 
