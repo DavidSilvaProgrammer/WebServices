@@ -3,3 +3,41 @@ quatro deles. Por fim, coloque para rodar na porta 8080.
 
 Trabalhe esse código em seu IDE, suba ele para sua conta no GitHub e compartilhe o link 
 desse projeto no campo ao lado para que outros desenvolvedores possam analisá-lo.*/
+
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebService;
+import javax.xml.ws.Endpoint;
+
+@WebService
+public class ServidorBancario {
+
+    @WebMethod
+    public boolean realizaPagamento(@WebParam(name = "valor") double valor, @WebParam(name = "contaDestino") String contaDestino) {
+        // Lógica para realizar pagamento
+        return true;
+    }
+
+    @WebMethod
+    public String geraBoleto(@WebParam(name = "valor") double valor, @WebParam(name = "contaOrigem") String contaOrigem, @WebParam(name = "contaDestino") String contaDestino) {
+        // Lógica para gerar boleto
+        return "1234567890123456789012345678901234567890";
+    }
+
+    @WebMethod
+    public boolean transfere(@WebParam(name = "valor") double valor, @WebParam(name = "contaOrigem") String contaOrigem, @WebParam(name = "contaDestino") String contaDestino) {
+        // Lógica para realizar transferência entre contas
+        return true;
+    }
+
+    @WebMethod
+    public double consultaSaldo(@WebParam(name = "conta") String conta) {
+        // Lógica para consultar saldo da conta
+        return 1000.0;
+    }
+
+    public static void main(String[] args) {
+        Endpoint.publish("http://localhost:8080/servidorbancario", new ServidorBancario());
+        System.out.println("Servidor rodando na porta 8080...");
+    }
+}
