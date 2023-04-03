@@ -2,3 +2,21 @@
 
 Realize essa atividade no WORD ou no Bloco de Notas, suba esse arquivo 
 para algum repositório e compartilhe o link no campo ao lado para que outros desenvolvedores possam analisá-lo.*/
+
+    1. Cliente-Servidor: separação entre as preocupações do cliente e do servidor;
+    
+    2. Stateless: cada requisição deve conter todas as informações necessárias para ser processada, 
+    sem a necessidade de manter informações de estado em memória;
+    3. Armazenamento em cache: utilização de cache para melhorar a performance e reduzir a carga no servidor;
+    
+    4. Interface uniforme: uso de recursos, verbos HTTP e representações padronizadas para permitir a 
+    comunicação entre a API e seus clientes;
+    
+    5. Sistema em camadas: possibilidade de adicionar camadas intermediárias, como proxies e gateways, 
+    para melhorar a escalabilidade e segurança da API;
+    
+    6. Código sob demanda: possibilidade opcional de enviar código executável para ser executado no 
+    cliente, como por exemplo, scripts em JavaScript.
+    
+    Referência:
+    https://imasters.com.br/desenvolvimento/definicao-restricoes-e-beneficios-modelo-de-arquitetura-rest
