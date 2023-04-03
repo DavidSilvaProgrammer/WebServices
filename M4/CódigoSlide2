@@ -13,3 +13,12 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 
 })
+
+
+/*
+Assim, acesse a linha de comando e execute o node index.js, que faz o ambiente rodar o 
+aplicativo e mostrar a mensagem: “Exemplo de um aplicativo escutando a porta 3000”.
+
+Para verificar a aplicação, acesse o link http://localhost:3000/. 
+Ele deverá conter uma página apenas com o texto Hello World escrito. Para encerrar a aplicação, pressione ctrl + C.
+*/
