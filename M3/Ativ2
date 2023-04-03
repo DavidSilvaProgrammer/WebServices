@@ -3,3 +3,77 @@ Aponte as rotas e os retornos do status HTTP.
 
 Trabalhe esse código em seu IDE, suba ele para sua conta no GitHub e compartilhe o link desse projeto 
 no campo ao lado para que outros desenvolvedores possam analisá-lo. */
+
+
+
+/*
+Descrição das rotas:
+
+    POST /filmes: rota para criar um novo filme. 
+
+    GET /filmes: rota para obter todos os filmes cadastrados. 
+    
+    GET /filmes/:id: rota para obter um filme específico a partir de seu ID. 
+
+    PUT /filmes/:id: rota para atualizar um filme existente. 
+    
+    DELETE /filmes/:id: rota para deletar um filme existente. 
+    */
+
+const express = require('express');
+const app = express();
+app.use(express.json());
+
+const filmes = [];
+
+// rota para criar um novo filme
+app.post('/filmes', (req, res) => {
+  const { titulo, diretor, ano } = req.body;
+  const filme = { titulo, diretor, ano };
+  filmes.push(filme);
+  res.status(201).send(filme);
+});
+
+// rota para obter todos os filmes
+app.get('/filmes', (req, res) => {
+  res.status(200).send(filmes);
+});
+
+// rota para obter um filme específico
+app.get('/filmes/:id', (req, res) => {
+  const filme = filmes.find(filme => filme.id === parseInt(req.params.id));
+  if (!filme) {
+    res.status(404).send('Filme não encontrado');
+  } else {
+    res.status(200).send(filme);
+  }
+});
+
+// rota para atualizar um filme
+app.put('/filmes/:id', (req, res) => {
+  const filme = filmes.find(filme => filme.id === parseInt(req.params.id));
+  if (!filme) {
+    res.status(404).send('Filme não encontrado');
+  } else {
+    filme.titulo = req.body.titulo;
+    filme.diretor = req.body.diretor;
+    filme.ano = req.body.ano;
+    res.status(200).send(filme);
+  }
+});
+
+// rota para deletar um filme
+app.delete('/filmes/:id', (req, res) => {
+  const index = filmes.findIndex(filme => filme.id === parseInt(req.params.id));
+  if (index === -1) {
+    res.status(404).send('Filme não encontrado');
+  } else {
+    filmes.splice(index, 1);
+    res.sendStatus(204);
+  }
+});
+
+app.listen(8080, () => {
+  console.log('Servidor rodando na porta 8080');
+});
+
