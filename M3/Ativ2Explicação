@@ -1,0 +1,23 @@
+Esse programa implementa um CRUD (Create, Read, Update, Delete) de filmes e define as seguintes rotas:
+
+    POST /filmes: rota para criar um novo filme. Ela recebe um objeto JSON contendo as informações do filme 
+    (título, diretor e ano) e retorna um objeto JSON com as mesmas informações mais um ID único gerado automaticamente 
+    pelo servidor. O status HTTP retornado é 201 (Created).
+
+    GET /filmes: rota para obter todos os filmes cadastrados. Ela retorna um array JSON contendo 
+    todos os objetos de filme armazenados no servidor. O status HTTP retornado é 200 (OK).
+
+    GET /filmes/:id: rota para obter um filme específico a partir de seu ID. Ela recebe o ID do filme 
+    como parâmetro da URL e retorna um objeto JSON com as informações do filme correspondente. 
+    Se o filme não for encontrado, é retornado um status HTTP 404 (Not Found).
+
+    PUT /filmes/:id: rota para atualizar um filme existente. Ela recebe o ID do filme como parâmetro da URL e 
+    um objeto JSON contendo as informações atualizadas do filme (título, diretor e ano). O servidor 
+    busca o filme correspondente pelo ID e atualiza suas informações. Se o filme não for encontrado, 
+    é retornado um status HTTP 404 (Not Found). O status HTTP retornado em caso de sucesso é 200 (OK).
+
+    DELETE /filmes/:id: rota para deletar um filme existente. Ela recebe o ID do filme como parâmetro 
+    da URL e remove o objeto correspondente do array de filmes. Se o filme não for encontrado, 
+    é retornado um status HTTP 404 (Not Found). O status HTTP retornado em caso de sucesso é 
+    204 (No Content).
+    */
